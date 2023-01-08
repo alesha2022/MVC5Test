@@ -1,0 +1,111 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+
+    <script src="~/Scripts/jquery-3.6.1.js"></script>
+    <script src="~/Scripts/popper.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    @*<script src="~/Scripts/bootstrap.min.js"></script>*@
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <title>StudentDetails</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-success navbar-dark">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/home/index">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/home/Products">Products</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/home/Contact">Contact</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container-fluid">
+        <table class="table">
+            <tr>
+                <td>
+                    Student ID
+                </td>
+                <td>@ViewBag.StudentId</td>
+            </tr>
+            <tr>
+                <td>
+                    Student Name
+                </td>
+                <td>@ViewBag.StudentName</td>
+            </tr>
+            <tr>
+                <td>
+                    Marks
+                </td>
+                <td>@ViewBag.Marks</td>
+            </tr>
+            <tr>
+                @{
+                    string status = "";
+                    if (ViewBag.Marks > 35)
+                    {
+                        status = "Pass";
+                    }
+                    else
+                    {
+                        status = "Fail";
+                    }
+                }
+                <td> Status</td>
+
+                <td>
+
+                    @status
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    @if(status=="Pass")
+                    {
+                        <span class="text-success"><bold>Congratulations!!!</bold></span>
+                    }
+                    else
+                    {
+                        <span class="text-danger">Better Luck Next Time!</span>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>Semesters</td>
+                <td>
+                    <ul>
+                        @for(int i=0;i<ViewBag.NoOfSemesters;i++)
+                        {
+                            <li>@i</li>
+                        }
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Subjects
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var item in ViewBag.Subjects)
+                        {
+                            <li>@item</li>
+                        }
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
